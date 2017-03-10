@@ -1,0 +1,44 @@
+<div ng-controller="logFileLocConfigController">
+	<form>
+		<div class="panel-body">
+			<button class="btn btn-default" data-toggle="modal"
+				data-target="#addLocationModal">Add</button>
+		</div>
+
+		<table class="table table-striped table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>Log location</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="logLoc in logLocations">
+					<td>{{ logLoc.path }}</td>
+					<td><a ng-click="remove($index)">Delete</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<div class="modal fade" id="addLocationModal" tabindex="-1"
+			role="dialog" aria-labelledby="addLocationModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="addLocationModalLabel">Add log
+							location</h4>
+					</div>
+					<div class="modal-body">
+						<label>Path</label>
+						<input class="form-control" type="text" ng-model="addLocationModal.logLocation"></input>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" ng-click="add()" data-dismiss="modal">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
