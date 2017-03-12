@@ -18,4 +18,7 @@ module.controller("logFileLocConfigController", ["$scope", "logFileLocationServi
 	$scope.addLocationModal = {logLocation : ""};
 	$scope.logLocations = logFileLocationService.getFileLocations();
 	logFileLocationService.setFileLocations();
+	$scope.$on("logFileLocationUpdateEvent", function(event, data) {
+		$scope.logLocations = data;
+	});
 }]);

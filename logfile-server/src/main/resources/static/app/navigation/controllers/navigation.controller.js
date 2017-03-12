@@ -3,6 +3,8 @@ module.controller("navigationController", ["$scope", "logFileLocationService",
                                            function($scope, logFileLocationService) {
 	
 	logFileLocationService.setFileLocations();
-	$scope.logLocations = logFileLocationService.getFileLocations();
+	$scope.$on("logFileLocationUpdateEvent", function(event, data) {
+		$scope.logLocations = data;
+	});
 	
 }]);

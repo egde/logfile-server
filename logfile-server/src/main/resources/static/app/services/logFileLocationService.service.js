@@ -1,30 +1,31 @@
 angular.module("services").factory(
 		"logFileLocationService",
-		["$http", "$scope",
-		function($http, $scope) {
+		["$http", "$rootScope",
+		function($http, $rootScope) {
 			var fileLocations = [];
 			var error;
+			
+			function setFileLocations() {
+				$http.get("/api/logFileLocations").then(
+					function(response) {
+						fileLocations = response.data;
+						$rootScope.$broadcast("logFileLocationUpdateEvent", fileLocations);
+					},
+					function(myError) {
+						error = myError;
+					}
+				);
+			}
 			
 			return {
 				getFileLocations: function() {
 					return fileLocations;
 				},
-				setFileLocations : function() {
-					$http.get("/api/logFileLocations").then(
-						function(response) {
-							fileLocations = response.data;
-							$scope.apply();
-						},
-						function(myError) {
-							error = myError;
-						}
-					);
-				},
+				setFileLocations : setFileLocations,
 				insertLogFileLocation : function(logFileLocation) {
 					$http.post("/api/logFileLocations", logFileLocation).then(
 						function(response) {
-							console.log("Added with Hash:"
-									+ response.data.hash)
+							setFileLocations();
 						}, 
 						function(myError) {
 							console.log("An Error occured " + myError);
