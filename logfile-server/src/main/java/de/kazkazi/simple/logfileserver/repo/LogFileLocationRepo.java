@@ -32,5 +32,9 @@ public class LogFileLocationRepo {
 		ArrayList<LogFileLocation> result = new ArrayList<LogFileLocation>(logFileLocations.values());
 		return result;
 	}
+	
+	public LogFileLocation getLogFile(String hash) {
+		return logFileLocations.get(hash);
+	}
 
 }
