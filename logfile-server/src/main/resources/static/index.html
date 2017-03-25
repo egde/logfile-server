@@ -16,15 +16,17 @@
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 
-<link rel="stylesheet" href="/webjars//bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/flexContent.css">
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-
-	<navigation> </navigation>
-	<div class="container-fluid">
-		<div ng-view></div>
+	<div>
+		<navigation> </navigation>
+		<div class="container-fluid">
+			<div ng-view></div>
+		</div>
 	</div>
 
 	<script src="app/services/services.module.js"></script>
