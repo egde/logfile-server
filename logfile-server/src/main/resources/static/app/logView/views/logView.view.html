@@ -1,3 +1,6 @@
 <div class="well contentFill" ng-controller="logViewController">
+	<div class="toolbar">
+		<button class="btn btn-default" ng-click="btnSwitchAutoScrollState()"><span class="glyphicon {{AutoScroll.icon}}"></span> Auto-Scroll {{ AutoScroll.state }}</button>
+	</div>
 	<pre id="logFileContent" class="code" style="background-color: black; color: white;">{{ logContent }}</pre>
 </div>

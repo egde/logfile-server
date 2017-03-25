@@ -3,6 +3,17 @@ var module = angular.module("logView", ["services"]);
 module.controller("logViewController", ["$scope", "$routeParams", "logService", 
                                         function($scope, $routeParams, logService) {
 	this.stompCLient = null;
+	AutoScrollConst_on = { state: "ON", icon: "glyphicon-expand"};
+	AutoScrollConst_off = { state: "OFF", icon: "glyphicon-unchecked"};
+	$scope.AutoScroll = AutoScrollConst_on;
+	
+	$scope.btnSwitchAutoScrollState = function() {
+		if ($scope.AutoScroll.state == "ON") {
+			$scope.AutoScroll = AutoScrollConst_off;		
+		} else {
+			$scope.AutoScroll = AutoScrollConst_on;
+		}
+	}
 	
 	function showLine(logFileEntry) {
 		if ($scope.logContent) {
@@ -11,7 +22,9 @@ module.controller("logViewController", ["$scope", "$routeParams", "logService",
 			$scope.logContent = logFileEntry.logLine;
 		}
 		$scope.$apply();
-		$("#logFileContent").scrollTop($("#logFileContent")[0].scrollHeight);
+		if ($scope.AutoScroll.state == "ON") {
+			$("#logFileContent").scrollTop($("#logFileContent")[0].scrollHeight);
+		}
 	};
 	
 	this.connect = function() {
