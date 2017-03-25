@@ -74,7 +74,9 @@ public class LogFileLocationRepo {
 	}
 
 	public LogFileLocation remove(String hash) {
-		return logFileLocations.remove(hash);
+		LogFileLocation result = logFileLocations.remove(hash);
+		persist();
+		return result;
 	}
 	
 	public ArrayList<LogFileLocation> listAll() {
