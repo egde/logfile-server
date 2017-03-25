@@ -11,6 +11,7 @@ module.controller("logViewController", ["$scope", "$routeParams", "logService",
 			$scope.logContent = logFileEntry.logLine;
 		}
 		$scope.$apply();
+		$("#logFileContent").scrollTop($("#logFileContent")[0].scrollHeight);
 	};
 	
 	this.connect = function() {
